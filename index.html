@@ -3,9 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Tracker</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <title>Job Application Tracker</title>
+
+    <style>
+        *{
+            font-family: "Geist", sans-serif;
+        }
+    </style>
 </head>
-<body>
+
+<body class="bg-base-200 p-6">
+
+    <div class="mx-auto max-w-[1110px]">
+
+        <h1 class="text-2xl font-bold mb-5">Job Application Tracker</h1>
     
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+
+            <div class="card bg-base-100 shadow h-24">
+                <div class="p-5">
+                <p>Total Jobs</p>
+                <h2 id="totalJob" class="text-3xl font-bold">0</h2>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow h-24">
+                <div class="p-5">
+                <p>Interview</p>
+                <h2 id="interviewJob" class="text-3xl font-bold text-success">0</h2>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow h-24">
+                <div class="p-5">
+                <p>Rejected</p>
+                <h2 id="rejectedJob" class="text-3xl font-bold text-error">0</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="">
+
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold">Available Jobs</h2>
+                    <span><span id="tabCount">0</span> Jobs</span>
+                </div>
+
+                <div class="tabs mb-4 gap-2 justify-start">
+                <button class="tab btn tab-active w-20 py-2 px-3 mx-auto btn-primary border-gray-500" onclick="changeTab('all')" id="tabAll">All</button>
+                <button class="tab btn w-20 py-2 px-3 mx-auto border-gray-500" onclick="changeTab('Interview')" id="tabInterview">Interview</button>
+                <button class="tab btn w-20 py-2 px-3 mx-auto border-gray-500" onclick="changeTab('Rejected')" id="tabRejected">Rejected</button>
+                </div>
+
+                <div id="jobList"></div>
+
+            </div>
+
+    </div>
+    
+    <script src="script.js"></script>
 </body>
+
 </html>
