@@ -10,6 +10,7 @@ let jobs = [
       "Develop and maintain responsive user interfaces using React and Tailwind CSS. Collaborate closely with backend developers and UI/UX designers to implement scalable features. Optimize performance, ensure cross-browser compatibility, and improve overall user experience.",
     status: ""
   },
+
   {
     id: 2,
     company: "Fixensy",
@@ -21,6 +22,7 @@ let jobs = [
       "Accurately label and categorize large datasets for machine learning models. Review and validate annotated data to ensure high-quality standards. Work with AI teams to improve data accuracy and support model training processes.",
     status: ""
   },
+
   {
     id: 3,
     company: "CloudCraft",
@@ -32,6 +34,7 @@ let jobs = [
       "Design and develop secure RESTful APIs using Node.js and Express. Manage databases, authentication systems, and server-side logic. Ensure scalability, data integrity, and optimized performance for cloud-based applications.",
     status: ""
   },
+
   {
     id: 4,
     company: "PixelMint",
@@ -43,6 +46,7 @@ let jobs = [
       "Create modern and user-friendly interface designs using Figma and Adobe XD. Conduct user research and implement design systems to maintain brand consistency. Work closely with developers to ensure pixel-perfect implementation.",
     status: ""
   },
+
   {
     id: 5,
     company: "BrightPay",
@@ -54,6 +58,7 @@ let jobs = [
       "Develop and maintain Android applications using Java and Firebase. Implement authentication, real-time database integration, and push notifications. Ensure clean architecture, bug fixing, and performance optimization.",
     status: ""
   },
+
   {
     id: 6,
     company: "SecureNest",
@@ -65,6 +70,7 @@ let jobs = [
       "Monitor network traffic and identify potential security threats. Conduct vulnerability assessments and implement security protocols. Prepare reports and collaborate with IT teams to strengthen cybersecurity measures.",
     status: ""
   },
+
   {
     id: 7,
     company: "NeuronPub",
@@ -76,6 +82,7 @@ let jobs = [
       "Perform manual and automated testing for web and mobile applications. Identify bugs, document test cases, and ensure product quality before release. Work closely with developers to improve reliability and user satisfaction.",
     status: ""
   },
+
   {
     id: 8,
     company: "Sonar Bangla Tour",
@@ -97,8 +104,8 @@ let currentTab = "all";
 function changeTab(tab) {
   currentTab = tab;
 
-  document.querySelectorAll(".tab").forEach(t => {
-    t.classList.remove("tab-active", "btn-primary");
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.classList.remove("tab-active", "btn-primary");
   });
 
   if (tab === "all") {
@@ -113,31 +120,28 @@ function changeTab(tab) {
     tabRejected.classList.add("tab-active", "btn-primary");
   }
 
-  renderJobs();
+  loadJobs();
 }
 
 
-
 function setStatus(id, status) {
-  for (let i = 0; i < jobs.length; i++) {
-    if (jobs[i].id === id) {
-      jobs[i].status = status;
-      break;
-    }
+  const job = jobs.find(j => j.id === id);
+  if (job) {
+    job.status = status;
   }
-  currentTab = status;
-  changeTab(status);
+  
+  changeTab(currentTab); 
 }
 
 
 // delet function logic
 function deleteJob(id) {
   jobs = jobs.filter(job => job.id !== id);
-  renderJobs();
+  loadJobs();
 }
 
 
-function renderJobs() {
+function loadJobs() {
 
   let filteredJobs = [];
 
@@ -170,12 +174,13 @@ function renderJobs() {
     let job = filteredJobs[i];
 
     let statusBadge = "";
+
     if (job.status === "Interview") {
-      statusBadge = `<span class="badge badge-outline badge-success p-4 rounded-md">INTERVIEW</span>`;
+      statusBadge = `<span class="badge bg-green-100 p-4 rounded-md">INTERVIEW</span>`;
     } else if (job.status === "Rejected") {
-      statusBadge = `<span class="badge badge-outline badge-error p-4 rounded-md">REJECTED</span>`;
+      statusBadge = `<span class="badge bg-red-100 p-4 rounded-md">REJECTED</span>`;
     } else {
-      statusBadge = `<span class="badge badge-outline badge-primary p-4 rounded-md">NOT APPLIED</span>`;
+      statusBadge = `<span class="badge bg-blue-100 p-4 rounded-md">NOT APPLIED</span>`;
     }
 
     jobCard += `
@@ -233,4 +238,4 @@ function updateCounts() {
 }
 
 
-renderJobs();
+loadJobs();
